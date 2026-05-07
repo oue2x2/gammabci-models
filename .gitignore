@@ -1,2 +1,5 @@
+# Local symlinks the test scripts expect — point these at your bci_raspy clone and dataset checkout
+test/bci_raspy
+test/data
 __pycache__/
 .DS_Store

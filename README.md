@@ -83,6 +83,35 @@ cnn_kf_H1/
 └── confusion_matrix/    # per-fold confusion matrix images
 ```
 
+## Validation
+
+`test/` contains two scripts that exercise the released weights end-to-end (each model is tested in isolation — see "Limitations" below). They expect a local `bci_raspy/` clone and a dataset checkout, both gitignored — symlink them in before running:
+
+```bash
+cd test/
+ln -s /path/to/bci_raspy bci_raspy
+ln -s /path/to/dataset_root data        # must contain raspy/2024-02-13_H1_CL_1/
+```
+
+Then:
+
+```bash
+# from gammabci-models/
+python test/rollout_lstm.py     # 16 episodes in SJ4DirectionsEnv, headless
+python test/infer_cnn.py        # CNN forward pass on 1s cue windows from H1_CL_1
+```
+
+Latest results (committed under `test/figures/`):
+
+| Test | Result |
+|---|---|
+| LSTM rollout | 16/16 hits, mean episode length 337 (`lstm_cursor_paths.png`) |
+| CNN cue-aligned 4-class | 84.2% on 133 windows from H1_CL_1, fold 0 (`cnn_predictions.png`, `cnn_confusion_matrix.png`) |
+
+### Limitations
+
+These scripts test the CNN-KF and LSTM copilot **separately**. The CNN test runs the decoder on recorded EEG; the LSTM test runs the copilot in its synthetic training env (`SJ4DirectionsEnv` with `softmax_type=normal_target`, i.e. a simulated decoder). Composing them — running the live RASPy pipeline with recorded EEG replayed into `UpdateEEG`, the CNN as the decoder, and the LSTM as the copilot — is the natural next validation and is not in this repo yet. The path: write a `stream_replay.py` (analog of `bci_raspy/stream/stream_fake.py`) that pumps `eeg.bin` over TCP at 1000 Hz, then run a RASPy YAML wiring `UpdateEEG → filterEEG → decoder (this CNN) → kf_clda → copilot (this LSTM) → task_module`.
+
 ## Citation
 
 If you use these weights, please cite the original paper and the dataset:
