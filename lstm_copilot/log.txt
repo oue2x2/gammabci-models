@@ -1,0 +1,18 @@
+python -m SJtools.copilot.train -model=RecurrentPPO -n_steps=8192 -batch_size=512 -action chargeTargets -action_param temperature 1 -obs targetEnd -holdtime=2.0 -stillCS=0.0 -timesteps=1200000 -lr_scheduler=constant -n_steps=2048 -softmax_type=normal_target -velReplaceSoftmax -no_wandb -reward_type=baseLinDistDecay.yaml -center_out_back -extra_targets_yaml=dir-8-close.yaml -device=cuda -filePath=/u/scratch/w/wshang/gammabci/copilot_runs/ -fileName=T8B_LSTM2_truedecay_0.7_1
+last model with complex softmax: 0.94, 94, 100
+^ time to hit, avg extra distance travelled, avg distance travelled: 203.48, 2.11, 2.78
+last model with two_peak softmax: 0.98, 98, 100
+^ time to hit, avg extra distance travelled, avg distance travelled: 193.68, 1.80, 2.49
+last model with simple softmax: 0.66, 66, 100
+^ time to hit, avg extra distance travelled, avg distance travelled: 254.79, 0.86, 1.34
+last model with normal_target softmax: 0.96, 96, 100
+^ time to hit, avg extra distance travelled, avg distance travelled: 200.15, 0.97, 1.65
+best model with complex softmax: 0.96, 96, 100
+^ time to hit, avg extra distance travelled, avg distance travelled: 195.46, 2.08, 2.77
+best model with two_peak softmax: 0.99, 99, 100
+^ time to hit, avg extra distance travelled, avg distance travelled: 203.34, 2.11, 2.80
+best model with simple softmax: 0.75, 75, 100
+^ time to hit, avg extra distance travelled, avg distance travelled: 237.57, 0.72, 1.25
+best model with normal_target softmax: 0.98, 98, 100
+^ time to hit, avg extra distance travelled, avg distance travelled: 191.71, 1.02, 1.70
+python -m SJtools.copilot.train -model=RecurrentPPO -n_steps=8192 -batch_size=512 -action chargeTargets -action_param temperature 1 -obs targetEnd -holdtime=2.0 -stillCS=0.0 -timesteps=1200000 -lr_scheduler=constant -n_steps=2048 -softmax_type=normal_target -velReplaceSoftmax -no_wandb -reward_type=baseLinDistDecay.yaml -center_out_back -extra_targets_yaml=dir-8-close.yaml -device=cuda -filePath=/u/scratch/w/wshang/gammabci/copilot_runs/ -fileName=T8B_LSTM2_truedecay_0.7_1
