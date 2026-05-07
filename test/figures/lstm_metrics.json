@@ -1,0 +1,7 @@
+{
+  "n_episodes": 16,
+  "n_hits": 16,
+  "hit_rate": 1.0,
+  "mean_length": 337.1875,
+  "mean_reward": 12.831000681400791
+}
