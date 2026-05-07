@@ -12,7 +12,6 @@ Trained model weights for replicating *Brain-machine interface control with arti
 
 - **Dataset** (EEG/task/gaze for all sessions): https://zenodo.org/records/15165133
 - **Code** (RASPy framework, training, inference): https://github.com/kaolab-research/bci_raspy
-  - Pinned commit for these weights: `43a6355` ("Initial commit")
 
 ## Setup
 
